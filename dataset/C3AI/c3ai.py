@@ -8,8 +8,6 @@ import numpy as np
 C3.ai COVID-19 API Documentation (2.0): https://c3.ai/covid-19-api-documentation/
 
 """
-
-
 class C3AI():
 	def __init__(self):
 		self.tbc = ""
@@ -113,33 +111,7 @@ class C3AI():
 	    return df
 
 if __name__ == '__main__':
-	print("########## c3ai dataset api ##########")
-	today = pd.Timestamp.now().strftime("%Y-%m-%d")
-
-	daily_cases_body = {
-	    "spec" : {
-	    "ids" : ["Hamilton_Ohio_UnitedStates"], 
-	    "expressions" : ["JHU_ConfirmedCases", "JHU_ConfirmedDeaths", "JHU_ConfirmedRecoveries"],
-	    "start" : "2020-01-01",
-	    "end" : today,
-	    "interval" : "DAY",
-	    }
-	}
-
-	# --------------------------------------- 
-	c3ai = C3AI()
-
-	# --------------------------------------- Daily Case Reports & Mobility
-	casecounts = c3ai.evalmetrics("outbreaklocation", daily_cases_body)
-	# --------------------------------------- Demographics
-	population_hamilton = 817473
-	#population = c3ai.fetch("populationdata", population_body, get_all = True)
-
-	cases = casecounts[['dates', 'Hamilton_Ohio_UnitedStates.JHU_ConfirmedCases.data', 'Hamilton_Ohio_UnitedStates.JHU_ConfirmedDeaths.data']]
-	#cases = casecounts[['Hamilton_Ohio_UnitedStates.JHU_ConfirmedCases.data', 'Hamilton_Ohio_UnitedStates.JHU_ConfirmedDeaths.data']]
-
-	print(type(cases))
-	cases.to_csv('cases.csv', index=False)
+	print("########## C3AI Data Access API ##########")
 
 
 

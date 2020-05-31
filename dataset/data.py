@@ -5,33 +5,31 @@ from scipy.stats import gamma
 import numpy as np
 import csv
 
-
-
 """
-C3.ai COVID-19 API Documentation (2.0): https://c3.ai/covid-19-api-documentation/
+Output Column Index
 
-				"FIPS": 0,
-				"ID": 1,
-				"SOCIAL_DIST_INDEX": 2,
-				"INCOME": 3,
-				"POPU_DENSITY": 4,
-				"DAYS_SINCE_1ST_CASE_X": 5,
-				"NUMBER_OF_BEDS": 6,
-				"AVG_WEATHER": 7,
-				"AIRPORT_SIZE": 8,
-				"INFECTED_X": 9,
-				"RECOVERED_X": 10,
-				"DEAD_X": 11,
-				"INFECTED_Y": 12,
-				"RECOVERED_Y": 13,
-				"DEAD_Y": 14,
-				"GROCERY_AVG_VISITS": 15,
-				"HEALTHCARE_AVG_VISITS": 16,
-				"HOSPITAL_AVG_VISITS": 17,
-				"POI_AVG_VISITS": 18,
-				"TOTAL_POP": 19,
-				"POP_DENSITY": 20,
-				"CLIMATE": 21
+"FIPS": 0,
+"ID": 1,
+"SOCIAL_DIST_INDEX": 2,
+"INCOME": 3,
+"POPU_DENSITY": 4,
+"DAYS_SINCE_1ST_CASE_X": 5,
+"NUMBER_OF_BEDS": 6,
+"AVG_WEATHER": 7,
+"AIRPORT_SIZE": 8,
+"INFECTED_X": 9,
+"RECOVERED_X": 10,
+"DEAD_X": 11,
+"INFECTED_Y": 12,
+"RECOVERED_Y": 13,
+"DEAD_Y": 14,
+"GROCERY_AVG_VISITS": 15,
+"HEALTHCARE_AVG_VISITS": 16,
+"HOSPITAL_AVG_VISITS": 17,
+"POI_AVG_VISITS": 18,
+"TOTAL_POP": 19,
+"POP_DENSITY": 20,
+"CLIMATE": 21
 """
 
 class Data():
@@ -349,7 +347,9 @@ class Data():
 		return infected_info, death_info
 
 
-	# --------------------------------------------------------------------------- C3AI API
+	# #################################################################################
+	# C3.ai COVID-19 API Documentation (2.0): https://c3.ai/covid-19-api-documentation/
+	# #################################################################################
 	def read_data_json(self, typename, api, body):
 	    """
 	    read_data_json directly accesses the C3.ai COVID-19 Data Lake APIs using the requests library, 
@@ -447,10 +447,10 @@ class Data():
 	    df["dates"] = pd.to_datetime(df["dates"])
 	    
 	    return df
-
+	# #################################################################################
+	
 if __name__ == '__main__':
 	fips = "39061"
-
 	x_date = "2020-05-01"
 	y_date = "2020-05-15"
 
@@ -470,16 +470,6 @@ if __name__ == '__main__':
 	infected_daily, death_daily = data_api.get_daily_new_cases_counties()
 	data_api.save_to_csv(infected_daily, './output/infected_daily_county_output.csv')
 	data_api.save_to_csv(death_daily, './output/death_daily_county_output.csv')
-
-	"""
-	'Wyoming-Weston County': '35.8'}
-	#dataset = data_api.get_data()
-	print(test)
-
-
-	print(type(cases))
-	cases.to_csv('cases.csv', index=False)
-	"""
 
 
 
